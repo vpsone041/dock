@@ -1,15 +1,12 @@
+---
 kind: pipeline
 type: docker
-name: linux_amd64
-
-environment:
-  GOOS: linux
-  GOARCH: amd64
-  CGO_ENABLED: 0
-
+name: latest
+platform:
+  os: linux
+  arch: amd64
 steps:
-  - name: build-linux-amd64
-    image: golang:1.21.4
+  - name: Trigger
+    image: plugins/git
     commands:
-      - go build
-      
+      - test $DRONE_BUILD_EVENT = pull_request
