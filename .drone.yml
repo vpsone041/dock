@@ -1,20 +1,10 @@
-###
+---
 kind: pipeline
 type: docker
-name: linux-amd63
-
-platform:
-  arch: amd64
-  os: linux
+name: default
 
 steps:
-
-- name: unit test
-  image: golang
-  environment:
-    coveralls_token:
-      from_secret: coveralls_token
-    DEEPSOURCE_DSN:
-      from_secret: deepsource_dsn
+- name: greeting
+  image: golang:1.12
   commands:
-    - apt-get update && apt-get upgrade -y && apt-get install -y ca-certificates wget libcurl4 libjansson4 libgomp1
+  - ls
